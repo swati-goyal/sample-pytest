@@ -24,7 +24,6 @@ help:
 # This generates the desired project file structure
 # A very important thing to note is that macros (or makefile variables) are referenced in the target's code with a single dollar sign ${}, but all script variables are referenced with two dollar signs $${}
 setup:
-
 	@echo "Checking if folder structure is present.."
 	[ -d tests ] || (echo "No directory found, generating..." && mkdir -p tests/assertions && mkdir -p tests/data)
 	for FILE in ${FILES}; do \
@@ -34,6 +33,7 @@ setup:
 # The ${} notation is specific to the make syntax and is very similar to bash's $()
 # This function uses pytest to test our source files
 test:
+	pipenv install
 	cp sample.py tests/test_file.py
 	${PYTHON} -m pytest tests/test_file.py
 
